@@ -99,7 +99,3 @@ radioBillAddButton.addEventListener('click', function(){
         }
     
 });
-
-
-
- 
