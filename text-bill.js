@@ -1,21 +1,32 @@
-const billTypeTextElement = document.querySelector(".billTypeText");
-// do this for all the DOM elements
-const addToBillBtnElement = document.querySelector(".addToBillBtn");
-const callTotalOneElement = document.querySelector(".callTotalOne");
-const smsTotalOneElement = document.querySelector(".smsTotalOne");
-const totalOneElement = document.querySelector(".totalOne");
+// get a reference to the textbox where the bill type is to be entered
 
+//get a reference to the add button
 
-// these variables are global and defined outside of the Add button event listener.
+//create a variable that will keep track of the total bill
+
+//add an event listener for when the add button is pressed
+
+//in the event listener check if the value in the bill type textbox is 'sms' or 'call'
+// * add the appropriate value to the running total
+// * add nothing for invalid values that is not 'call' or 'sms'.
+// * display the latest total on the screen
+var addToBillBtn = document.querySelector('.addToBillBtn');
+var billTypeText = document.querySelector('.billTypeText');
+var callTotalOneElem = document.querySelector('.callTotalOne');
+var smsTotalOneElem = document.querySelector('.smsTotalOne');
+var totalOneElem = document.querySelector('.totalOne');
+
 var callsTotal = 0;
 var smsTotal = 0;
 
-// the event listener is declared below here
-function textBillTotal(){
+addToBillBtn.addEventListener('click', function(){
+
+    
     // get the value entered in the billType textfield
-    var billTypeEntered = billTypeText.value.trim();
+    var billTypeEntered = billTypeText.value;
+  
     // update the correct total
-    if (billTypeEntered === "bill"){
+    if (billTypeEntered === "call"){
         callsTotal += 2.75
     }
     else if (billTypeEntered === "sms"){
@@ -23,33 +34,17 @@ function textBillTotal(){
     }
     
     //update the totals that is displayed on the screen.
-    callsTotalElem.innerHTML = callsTotal.toFixed(2);
-    smsTotalElem.innerHTML = smsTotal.toFixed(2);
+    callTotalOneElem.innerHTML = callsTotal.toFixed(2);
+    smsTotalOneElem.innerHTML = smsTotal.toFixed(2);
     var totalCost = callsTotal + smsTotal;
-    totalCostElem.innerHTML = totalCost.toFixed(2);
-}
+    totalOneElem.innerHTML = totalCost.toFixed(2);
 
-textTotalAddBtn.addEventListener('click', textBillTotal);
 
-function textBillTotal(){
-
-    // ... other code here
-    
-    //update the totals that is displayed on the screen.
-    callsTotalElem.innerHTML = callsTotal.toFixed(2);
-    smsTotalElem.innerHTML = smsTotal.toFixed(2);
-    var totalCost = callsTotal + smsTotal;
-    totalCostElem.innerHTML = totalCost.toFixed(2);
-    
-    //color the total based on the criteria
     if (totalCost >= 50){
         // adding the danger class will make the text red
-        totalCostElem.classList.add("danger");
+        totalOneElem.classList.add("danger");
     }
     else if (totalCost >= 30){
-        totalCostElem.classList.add("warning");
+        totalOneElem.classList.add("warning");
     }
-}
-
-
- 
+});
